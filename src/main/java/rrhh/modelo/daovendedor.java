@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class daovendedor {
     
-    private static final String SQL_SELECT = "SELECT codigo_vendedor, nombre_vendedor, direccion_vendedor, estatus_vendedro, nit_vendedro , telefono_vendedor  FROM vendedores";
+    private static final String SQL_SELECT = "SELECT codigo_vendedor, nombre_vendedor, direccion_vendedor, estatus_vendedor, nit_vendedor , telefono_vendedor  FROM vendedores";
     private static final String SQL_INSERT = "INSERT INTO vendedores( nombre_vendedor, direccion_vendedor, estatus_vendedor, nit_vendedor , telefono_vendedor) VALUES(?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE vededores SET nombre_vendedor=?, direccion_vendedor=?, status_vendedor=?, nit_vendedorr=?, telefono_vendedror=? WHERE codigo_vendedor = ?";
     private static final String SQL_DELETE = "DELETE FROM vendedores WHERE codigo_vendedor=?";
