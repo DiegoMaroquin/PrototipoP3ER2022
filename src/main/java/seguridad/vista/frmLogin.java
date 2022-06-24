@@ -196,7 +196,7 @@ public class frmLogin extends javax.swing.JFrame {
                             System.out.println(e);
                         }
                         break; 
-                        case "Area RRHH":
+                        case "comercio":
                         try {
                             mdiNomina menunomina = new mdiNomina();
                             menunomina.setVisible(true);

@@ -119,7 +119,7 @@ public class mdiNomina extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem5);
 
-        jMenuItem10.setText("Mantenimiento Conceptos");
+        jMenuItem10.setText("Mantenimiento vendedor");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
