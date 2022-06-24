@@ -30,9 +30,9 @@ public class frmMantenimientomarca extends javax.swing.JInternalFrame {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("deparid");
-        modelo.addColumn("deparnombre");
-        modelo.addColumn("deparestado");
+        modelo.addColumn("codigo_marca");
+        modelo.addColumn("nombre_marca");
+        modelo.addColumn("estatus_marca");
         
         daomarca vendedorDAO = new daomarca();
         List<clsmarca> vendedores = vendedorDAO.select();
@@ -105,7 +105,7 @@ public class frmMantenimientomarca extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Mantenimiento Departamentos");
+        setTitle("Mantenimiento marca");
         setVisible(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -134,8 +134,8 @@ public class frmMantenimientomarca extends javax.swing.JInternalFrame {
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 95, -1));
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label1.setText("Departamentos");
-        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, -1, -1));
+        label1.setText("marca");
+        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, -1, 20));
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +146,7 @@ public class frmMantenimientomarca extends javax.swing.JInternalFrame {
         getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 95, -1));
 
         label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label3.setText("Nombre departamento");
+        label3.setText("Nombre Marca");
         label3.setToolTipText("En este apartado se agrega el nombre de los departamentos que tiene la empresa");
         getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
         getContentPane().add(txtbuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 250, 30));
@@ -165,7 +165,7 @@ public class frmMantenimientomarca extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "deparid", "deparnombre", "deparestado"
+                "codigo_marca", "nombre_marca", "estatus_marca"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -212,6 +212,8 @@ public class frmMantenimientomarca extends javax.swing.JInternalFrame {
         txtNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         txtNombre.setOpaque(false);
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 200, -1));
+
+        getAccessibleContext().setAccessibleName("Mantenimiento marca");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

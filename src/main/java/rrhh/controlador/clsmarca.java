@@ -49,7 +49,7 @@ public class clsmarca {
     }
     @Override
     public String toString() {
-        return "marca{" + "codigo_marca=" + codigo_marca + ", nombre_marca="  +  nombre_marca +", estatus_marca=" + estatus_marca+  "}";
+        return "marcas{" + "codigo_marca=" + codigo_marca + ", nombre_marca="  +  nombre_marca +", estatus_marca=" + estatus_marca+  "}";
     }
     
     

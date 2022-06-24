@@ -21,9 +21,12 @@
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" value="Mantenimiento Departamentos"/>
+    <Property name="title" type="java.lang.String" value="Mantenimiento marca"/>
     <Property name="visible" type="boolean" value="true"/>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Mantenimiento marca"/>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -88,11 +91,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Departamentos"/>
+        <Property name="text" type="java.lang.String" value="marca"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="690" y="0" width="-1" height="-1"/>
+          <AbsoluteConstraints x="750" y="10" width="-1" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -114,7 +117,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Nombre departamento"/>
+        <Property name="text" type="java.lang.String" value="Nombre Marca"/>
         <Property name="toolTipText" type="java.lang.String" value="En este apartado se agrega el nombre de los departamentos que tiene la empresa"/>
       </Properties>
       <Constraints>
@@ -162,9 +165,9 @@
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="3" rowCount="0">
-                <Column editable="false" title="deparid" type="java.lang.Object"/>
-                <Column editable="false" title="deparnombre" type="java.lang.Object"/>
-                <Column editable="false" title="deparestado" type="java.lang.Object"/>
+                <Column editable="false" title="codigo_marca" type="java.lang.Object"/>
+                <Column editable="false" title="nombre_marca" type="java.lang.Object"/>
+                <Column editable="false" title="estatus_marca" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

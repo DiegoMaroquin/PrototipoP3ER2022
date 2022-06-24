@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class daomarca {
 
-    private static final String SQL_SELECT = "SELECT codigo_marca, nombre_marca, estatus_marca FROM marca";
-    private static final String SQL_INSERT = "INSERT INTO marca(nombre_marca, estatus_marca) VALUES(?, ?)";
-    private static final String SQL_UPDATE = "UPDATE marca SET nombre_marca?, estatus_marca=? WHERE codigo_marca= ?";
-    private static final String SQL_DELETE = "DELETE FROM marca WHERE codigo_marca=?";
-    private static final String SQL_QUERY = "SELECT  codigo_marca,  nombre_marca, estatus_marca FROM marca WHERE codigo_marca= ?";
+    private static final String SQL_SELECT = "SELECT codigo_marca, nombre_marca, estatus_marca FROM marcas";
+    private static final String SQL_INSERT = "INSERT INTO marcas(nombre_marca, estatus_marca) VALUES(?, ?)";
+    private static final String SQL_UPDATE = "UPDATE marcas SET nombre_marca?, estatus_marca=? WHERE codigo_marca= ?";
+    private static final String SQL_DELETE = "DELETE FROM marcas WHERE codigo_marca=?";
+    private static final String SQL_QUERY = "SELECT  codigo_marca,  nombre_marca, estatus_marca FROM marcas WHERE codigo_marca= ?";
 
     public List<clsmarca> select() {
         Connection conn = null;
