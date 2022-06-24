@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmMantenimientoEmpleados extends javax.swing.JInternalFrame {
+public class frmMantenimientocliente extends javax.swing.JInternalFrame {
 
 public void estado(){
 cbox_estado.addItem("seleccione:");
@@ -72,7 +72,7 @@ cbox_estado.addItem("inactivo");
       
     }
 
-    public frmMantenimientoEmpleados() {
+    public frmMantenimientocliente() {
         initComponents();
         llenadoDeTablas(); 
         estado();
@@ -182,11 +182,11 @@ cbox_estado.addItem("inactivo");
 
             },
             new String [] {
-                "Codigo_cliente", "nombre_cliente", "direcion_cliente", "Estado", "nit", "telefono", "codigo"
+                "Codigo_cliente", "telefono", "direcion_cliente", "Estado", "nit", "nombre_cliente"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

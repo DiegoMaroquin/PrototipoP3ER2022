@@ -8,8 +8,8 @@ public class clscliente {
     private String nombre_cliente;
     private String direccion_cliente; 
     private String estatus_cliente;
-    private String telefono_cliente;
     private String nit_cliente;
+    private String telefono_cliente;
     private String codigo_vendedor;
    
     public clscliente() {
@@ -23,8 +23,8 @@ public class clscliente {
         this.nombre_cliente = empnombre;
         this.direccion_cliente = empsueldo;
         this.estatus_cliente = empestado;
+         this.nit_cliente = empcargo;
         this.telefono_cliente = empdias;
-        this.nit_cliente = empcargo;
         this.codigo_vendedor=empdepart;
     }
     
@@ -32,8 +32,8 @@ public class clscliente {
         this.codigo_cliente = empid;
         this.direccion_cliente = empsueldo;
         this.estatus_cliente = empestado;
-        this.telefono_cliente = empdias;
         this.nit_cliente = empcargo;
+        this.telefono_cliente = empdias;
         this.codigo_vendedor=empdepart;
     }
     

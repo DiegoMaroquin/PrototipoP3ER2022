@@ -95,7 +95,7 @@ public class mdiNomina extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem3.setText("Mantenimiento Trabajadores");
+        jMenuItem3.setText("Mantenimiento cliente");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -103,7 +103,7 @@ public class mdiNomina extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem4.setText("Mantenimiento Cargos");
+        jMenuItem4.setText("Mantenimiento lineas");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -111,7 +111,7 @@ public class mdiNomina extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem4);
 
-        jMenuItem5.setText("Mantenimiento Departamentos");
+        jMenuItem5.setText("Mantenimiento marcas");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -215,7 +215,7 @@ public class mdiNomina extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-         frmMantenimientoEmpleados ventana = new frmMantenimientoEmpleados();
+         frmMantenimientocliente ventana = new frmMantenimientocliente();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();

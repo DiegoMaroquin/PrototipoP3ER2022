@@ -16,12 +16,12 @@ import java.util.List;
  */
 public class daocliente {
 
-    private static final String SQL_SELECT = "SELECT codigo_cliente, codigo_vendedor, direccion_cliente, estatus_cliente, nit_cliente, nombre_cliente, telefono_cliente  FROM clientes";
+    private static final String SQL_SELECT = "SELECT codigo_cliente, nombre_cliente, direccion_cliente, estatus_cliente, nit_cliente, telefono_cliente , codigo_vendedor  FROM clientes";
     private static final String SQL_INSERT = "INSERT INTO clientes(codigo_vendedor, direccion_cliente, estatus_cliente, nit_cliente, nombre_cliente, telefono_cliente) VALUES(?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE clientes SET codigo_vendedor=?, direccion_cliente=?, estatus_cliente=?, nit_cliente=?, nombre_cliente=?, telefono_cliente=? WHERE Codigo_cliente = ?";
     private static final String SQL_DELETE = "DELETE FROM clientes WHERE Codigo_cliente=?";
     private static final String SQL_QUERY = "SELECT Codigo_cliente, codigo_vendedor, direccion_cliente, estatus_cliente, nit_cliente, nombre_cliente, telefono_cliente FROM clientes WHERE Codigo_cliente=?";
-    private static final String SQL_QUERY2 = "SELECT Codigo_cliente, codigo_vendedor, direccion_cliente, estatus_cliente, nit_cliente, nombre_cliente, telefono_cliente WHERE nombre_cliente=?";
+    private static final String SQL_QUERY2 = "SELECT codigo_cliente, nombre_cliente, direccion_cliente, estatus_cliente, nit_cliente, telefono_cliente , codigo_vendedor WHERE nombre_cliente=?";
 
     public List<clscliente> select() {
         Connection conn = null;
