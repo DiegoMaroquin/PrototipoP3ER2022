@@ -128,7 +128,7 @@ cbox_estado.addItem("inactivo");
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Mantenimiento empleados");
+        setTitle("Mantenimiento cliente");
         setVisible(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -182,11 +182,11 @@ cbox_estado.addItem("inactivo");
 
             },
             new String [] {
-                "Codigo_cliente", "telefono", "direcion_cliente", "Estado", "nit", "nombre_cliente"
+                "Codigo_cliente", "telefono", "direcion_cliente", "Estado", "nit", "nombre_cliente", "codigo_vendedor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -215,7 +215,7 @@ cbox_estado.addItem("inactivo");
         txtcodigo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtcodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         txtcodigo.setOpaque(false);
-        getContentPane().add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 220, 10));
+        getContentPane().add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 220, 30));
 
         label8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 450, -1, -1));
@@ -259,15 +259,15 @@ cbox_estado.addItem("inactivo");
         getContentPane().add(label14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label5.setText("-----------------Ingreso de datos del empleado-----------------");
+        label5.setText("-----------------Ingreso de datos del cliente-----------------");
         getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 360, -1));
 
         label7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label7.setText("codigo vendedor");
+        label7.setText("Nombre clienter");
         getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
         label10.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label10.setText("Nombre cliente");
+        label10.setText("telefono");
         getContentPane().add(label10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
         getContentPane().add(txtbuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 102, -1));
 
@@ -301,6 +301,8 @@ cbox_estado.addItem("inactivo");
         txttelefono.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         txttelefono.setOpaque(false);
         getContentPane().add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 260, -1));
+
+        getAccessibleContext().setAccessibleName("Mantenimiento cliente");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

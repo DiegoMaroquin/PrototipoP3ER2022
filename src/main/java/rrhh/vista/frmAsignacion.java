@@ -7,8 +7,8 @@ package rrhh.vista;
 
 import rrhh.modelo.daocliente;
 import rrhh.controlador.clscliente;
-import rrhh.modelo.daoConcepto;
-import rrhh.controlador.clsConcepto;
+import rrhh.modelo.daovendedor;
+import rrhh.controlador.clsvendedor;
 
 import rrhh.modelo.daoAsignacion;
 import rrhh.controlador.clsAsignacion;
@@ -38,11 +38,11 @@ public class frmAsignacion extends javax.swing.JInternalFrame {
     
    
     public void llenadoDeconceptoID() {
-        daoConcepto conceptoDAO = new daoConcepto();
-        List<clsConcepto> IdConcepto = conceptoDAO.select();
+        daovendedor conceptoDAO = new daovendedor();
+        List<clsvendedor> IdConcepto = conceptoDAO.select();
         Cbx_buscado.addItem("Seleccione una opción");
         for (int i = 0; i < IdConcepto.size(); i++) {
-            Cbx_buscado.addItem(IdConcepto.get(i).getconcepnombre());
+            Cbx_buscado.addItem(IdConcepto.get(i).getnombre_vendedor());
         }
     }
     
@@ -83,13 +83,13 @@ public class frmAsignacion extends javax.swing.JInternalFrame {
  
     
     public void buscarconcepto() {
-        clsConcepto conceptoAConsultar = new clsConcepto();
-        daoConcepto conceptoDAO = new daoConcepto();
+        clsvendedor conceptoAConsultar = new clsvendedor();
+        daovendedor conceptoDAO = new daovendedor();
         
-        conceptoAConsultar.setconcepnombre(Cbx_buscado.getSelectedItem().toString());
+        conceptoAConsultar.setnombre_vendedor(Cbx_buscado.getSelectedItem().toString());
         conceptoAConsultar = conceptoDAO.query2(conceptoAConsultar);     
-        valor.setText(conceptoAConsultar.getconcepvalor());
-        efecto.setSelectedItem(conceptoAConsultar.getconcepefecto());
+        valor.setText(conceptoAConsultar.getnit_vendedor());
+        efecto.setSelectedItem(conceptoAConsultar.getdireccion_vendedor());
        
         }
    

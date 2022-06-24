@@ -280,7 +280,7 @@ public class mdiNomina extends javax.swing.JFrame {
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
-        frmMantenimientoConcepto ventana = new frmMantenimientoConcepto();
+        frmMantenimientovendedro ventana = new frmMantenimientovendedro();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();

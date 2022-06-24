@@ -10,8 +10,8 @@ package rrhh.vista;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import rrhh.modelo.daoConcepto;
-import rrhh.controlador.clsConcepto;
+import rrhh.modelo.daovendedor;
+import rrhh.controlador.clsvendedor;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
@@ -23,21 +23,23 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
+public class frmMantenimientovendedro extends javax.swing.JInternalFrame {
 
     public void llenadoDeCombos() {
-        daoConcepto EmpleadoDAO = new daoConcepto();
-        List<clsConcepto> empleados = EmpleadoDAO.select();
+        daovendedor EmpleadoDAO = new daovendedor();
+        List<clsvendedor> empleados = EmpleadoDAO.select();
         cbox_trabajadores.addItem("Seleccione una opción");
         for (int i = 0; i < empleados.size(); i++) {
-            cbox_trabajadores.addItem(empleados.get(i).getconcepnombre());
+            cbox_trabajadores.addItem(empleados.get(i).getnombre_vendedor());
         }
     }
    
      public void efecto() {    
         cbox_efecto.addItem("Seleccione una opción");
-        cbox_efecto.addItem("+");
-        cbox_efecto.addItem("-");
+        cbox_efecto.addItem("call1");
+        cbox_efecto.addItem("calle 12");
+        cbox_efecto.addItem("calle 13");
+        cbox_efecto.addItem("calle 14");
     }
  
        
@@ -58,17 +60,17 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
         modelo.addColumn("concepestado");
         modelo.addColumn("concepvalor");
         //modelo.addColumn("Dias laborados");
-        daoConcepto empleadoDAO = new daoConcepto();
-        List<clsConcepto> empleados = empleadoDAO.select();
+        daovendedor empleadoDAO = new daovendedor();
+        List<clsvendedor> empleados = empleadoDAO.select();
         tablaEmpleados.setModel(modelo);
         String[] dato = new String[6];
         for (int i = 0; i < empleados.size(); i++) {
            
-           dato[0] = Integer.toString(empleados.get(i).getconcepid());
-            dato[1] = empleados.get(i).getconcepnombre();
-            dato[2] = empleados.get(i).getconcepefecto();
-            dato[3] = empleados.get(i).getconcepestado();
-            dato[4] = empleados.get(i).getconcepvalor();
+           dato[0] = Integer.toString(empleados.get(i).getcodigo_vendedor());
+            dato[1] = empleados.get(i).getnombre_vendedor();
+            dato[2] = empleados.get(i).getdireccion_vendedor();
+            dato[3] = empleados.get(i).getstatus_vendedor();
+            dato[4] = empleados.get(i).getnit_vendedor();
            
             
             modelo.addRow(dato);
@@ -76,18 +78,18 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
     }
 
     public void buscarconceptos() {
-        clsConcepto empleadoAConsultar = new clsConcepto();
-        daoConcepto empleadoDAO = new daoConcepto();
-        empleadoAConsultar.setconcepid(Integer.parseInt(txtbuscado.getText()));
+        clsvendedor empleadoAConsultar = new clsvendedor();
+        daovendedor empleadoDAO = new daovendedor();
+        empleadoAConsultar.setcodigo_vendedor(Integer.parseInt(txtbuscado.getText()));
         empleadoAConsultar = empleadoDAO.query(empleadoAConsultar);
-        txtNombre.setText(empleadoAConsultar.getconcepnombre());
-        cbox_efecto.setSelectedItem(empleadoAConsultar.getconcepefecto());
-        cbox_estado.setSelectedItem(empleadoAConsultar.getconcepestado());
-        txtValor.setText(empleadoAConsultar.getconcepvalor());
+        txtNombre.setText(empleadoAConsultar.getnombre_vendedor());
+        cbox_efecto.setSelectedItem(empleadoAConsultar.getdireccion_vendedor());
+        cbox_estado.setSelectedItem(empleadoAConsultar.getstatus_vendedor());
+        txtValor.setText(empleadoAConsultar.getnit_vendedor());
       
     }
 
-    public frmMantenimientoConcepto() {
+    public frmMantenimientovendedro() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
@@ -138,7 +140,7 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Mantenimiento Conceptos");
+        setTitle("Mantenimiento vendedor");
         setVisible(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -217,7 +219,7 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
         getContentPane().add(cbox_trabajadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 263, -1));
 
         label4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label4.setText("-----------------Ingreso de datos del empleado-----------------");
+        label4.setText("-----------------Ingreso de datos del vendedor-----------------");
         getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 360, -1));
 
         ayuda.setText("Ayuda");
@@ -238,7 +240,7 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 200, -1));
 
         label9.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label9.setText("Efecto ");
+        label9.setText("direccion");
         getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         txtValor.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -247,7 +249,7 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
         getContentPane().add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 200, -1));
 
         label12.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label12.setText("Valor");
+        label12.setText("nit");
         getContentPane().add(label12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -272,6 +274,8 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
 
         getContentPane().add(cbox_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 200, -1));
 
+        getAccessibleContext().setAccessibleName("Mantenimiento vendedor");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -279,9 +283,9 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int i =JOptionPane.showConfirmDialog(this, "seguro que quieres borrar este dato ");
         if ( i == 0){
-        daoConcepto empleadoDAO = new daoConcepto();
-        clsConcepto empleadoAEliminar = new clsConcepto();
-        empleadoAEliminar.setconcepid(Integer.parseInt(txtbuscado.getText()));
+        daovendedor empleadoDAO = new daovendedor();
+        clsvendedor empleadoAEliminar = new clsvendedor();
+        empleadoAEliminar.setcodigo_vendedor(Integer.parseInt(txtbuscado.getText()));
         empleadoDAO.delete(empleadoAEliminar);
 
         } else if(1==1){
@@ -291,12 +295,12 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        daoConcepto empleadoDAO = new daoConcepto();
-        clsConcepto empleadoAInsertar = new clsConcepto();
-        empleadoAInsertar.setconcepnombre(txtNombre.getText());
-        empleadoAInsertar.setconcepefecto(cbox_efecto.getSelectedItem().toString());
-        empleadoAInsertar.setconcepestado(cbox_estado.getSelectedItem().toString());
-        empleadoAInsertar.setconcepvalor(txtValor.getText());
+        daovendedor empleadoDAO = new daovendedor();
+        clsvendedor empleadoAInsertar = new clsvendedor();
+        empleadoAInsertar.setnombre_vendedor(txtNombre.getText());
+        empleadoAInsertar.setdireccion_vendedor(cbox_efecto.getSelectedItem().toString());
+        empleadoAInsertar.setstatus_vendedor(cbox_estado.getSelectedItem().toString());
+        empleadoAInsertar.setnit_vendedor(txtValor.getText());
         //empleadoAInsertar.setempdias(txtDias.getText());
         empleadoDAO.insert(empleadoAInsertar);
         llenadoDeTablas();
@@ -312,13 +316,13 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
 //        // TODO add your handling code here:
 int i =JOptionPane.showConfirmDialog(this, "seguro que quieres modificar este dato ");
         if ( i == 0){
-        daoConcepto empleadoDAO = new daoConcepto();
-        clsConcepto empleadoAActualizar = new clsConcepto();
-        empleadoAActualizar.setconcepid(Integer.parseInt(txtbuscado.getText()));
-        empleadoAActualizar.setconcepnombre(txtNombre.getText());
-        empleadoAActualizar.setconcepefecto(cbox_efecto.getSelectedItem().toString());
-        empleadoAActualizar.setconcepestado(cbox_estado.getSelectedItem().toString());
-         empleadoAActualizar.setconcepvalor(txtValor.getText());
+        daovendedor empleadoDAO = new daovendedor();
+        clsvendedor empleadoAActualizar = new clsvendedor();
+        empleadoAActualizar.setcodigo_vendedor(Integer.parseInt(txtbuscado.getText()));
+        empleadoAActualizar.setnombre_vendedor(txtNombre.getText());
+        empleadoAActualizar.setdireccion_vendedor(cbox_efecto.getSelectedItem().toString());
+        empleadoAActualizar.setstatus_vendedor(cbox_estado.getSelectedItem().toString());
+         empleadoAActualizar.setnit_vendedor(txtValor.getText());
         //empleadoAActualizar.setempdias(txtDias.getText());  
         empleadoDAO.update(empleadoAActualizar);
         
