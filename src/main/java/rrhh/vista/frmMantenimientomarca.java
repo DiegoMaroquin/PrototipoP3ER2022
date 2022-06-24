@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmMantenimientodepartamento extends javax.swing.JInternalFrame {
+public class frmMantenimientomarca extends javax.swing.JInternalFrame {
 
     public void llenadoDeCombos() {
         /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -39,9 +39,9 @@ public class frmMantenimientodepartamento extends javax.swing.JInternalFrame {
         tablaVendedores.setModel(modelo);
         String[] dato = new String[3];
         for (int i = 0; i < vendedores.size(); i++) {
-            dato[0] = Integer.toString(vendedores.get(i).getdeparid());
-            dato[1] = vendedores.get(i).getdeparnombre();
-            dato[2] = vendedores.get(i).getdeparestado();
+            dato[0] = Integer.toString(vendedores.get(i).getcodigo_marca());
+            dato[1] = vendedores.get(i).getnombre_marca();
+            dato[2] = vendedores.get(i).getestatus_marca();
             
             //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
@@ -56,13 +56,13 @@ public class frmMantenimientodepartamento extends javax.swing.JInternalFrame {
     public void buscarVendedor() {
         clsmarca vendedorAConsultar = new clsmarca();
         daomarca vendedorDAO = new daomarca();
-        vendedorAConsultar.setdeparid(Integer.parseInt(txtbuscado.getText()));
+        vendedorAConsultar.setcodigo_marca(Integer.parseInt(txtbuscado.getText()));
         vendedorAConsultar = vendedorDAO.query(vendedorAConsultar);
-        txtNombre.setText(vendedorAConsultar.getdeparnombre());   
-        cbox_estado.setSelectedItem(vendedorAConsultar.getdeparestado());
+        txtNombre.setText(vendedorAConsultar.getnombre_marca());   
+        cbox_estado.setSelectedItem(vendedorAConsultar.getestatus_marca());
     }
 
-    public frmMantenimientodepartamento() {
+    public frmMantenimientomarca() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
@@ -223,7 +223,7 @@ public class frmMantenimientodepartamento extends javax.swing.JInternalFrame {
         if ( i == 0){
         daomarca vendedorDAO = new daomarca();
         clsmarca vendedorAEliminar = new clsmarca();
-        vendedorAEliminar.setdeparid(Integer.parseInt(txtbuscado.getText()));
+        vendedorAEliminar.setcodigo_marca(Integer.parseInt(txtbuscado.getText()));
         vendedorDAO.delete(vendedorAEliminar);
        
         }else if(1==1){
@@ -235,8 +235,8 @@ public class frmMantenimientodepartamento extends javax.swing.JInternalFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         daomarca vendedorDAO = new daomarca();
         clsmarca vendedorAInsertar = new clsmarca();
-        vendedorAInsertar.setdeparnombre(txtNombre.getText());
-         vendedorAInsertar.setdeparestado(cbox_estado.getSelectedItem().toString());
+        vendedorAInsertar.setnombre_marca(txtNombre.getText());
+         vendedorAInsertar.setestatus_marca(cbox_estado.getSelectedItem().toString());
         vendedorDAO.insert(vendedorAInsertar);
         
         llenadoDeTablas();
@@ -255,9 +255,9 @@ public class frmMantenimientodepartamento extends javax.swing.JInternalFrame {
         if ( i == 0){
         daomarca vendedorDAO = new daomarca();
         clsmarca vendedorAActualizar = new clsmarca();
-        vendedorAActualizar.setdeparid(Integer.parseInt(txtbuscado.getText()));
-        vendedorAActualizar.setdeparnombre(txtNombre.getText());
-        vendedorAActualizar.setdeparestado(cbox_estado.getSelectedItem().toString());
+        vendedorAActualizar.setcodigo_marca(Integer.parseInt(txtbuscado.getText()));
+        vendedorAActualizar.setnombre_marca(txtNombre.getText());
+        vendedorAActualizar.setestatus_marca(cbox_estado.getSelectedItem().toString());
         vendedorDAO.update(vendedorAActualizar);
         
         } else if(1==1){

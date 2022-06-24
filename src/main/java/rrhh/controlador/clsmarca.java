@@ -1,55 +1,55 @@
 package rrhh.controlador;
 
 public class clsmarca {
-    private int deparid;
-    private String deparnombre;
-    private String deparestado;
+    private int codigo_marca;
+    private String  nombre_marca;
+    private String estatus_marca;
 
     public clsmarca() {
     }
 
     public clsmarca(int codigodepa) {
-        this.deparid = codigodepa;
+        this.codigo_marca = codigodepa;
     }
     
     public clsmarca(String snombre, String sestado) {
-        this.deparnombre = snombre;
-        this.deparestado = sestado;
+        this.nombre_marca = snombre;
+        this.estatus_marca = sestado;
     }
     
     public clsmarca(int codigodepa, String snombre, String sestado) {
-        this.deparid = codigodepa;
-        this.deparnombre = snombre;
-        this.deparestado = sestado;
+        this.codigo_marca = codigodepa;
+        this.nombre_marca = snombre;
+        this.estatus_marca = sestado;
     }
     
 
-    public int getdeparid() {
-        return deparid;
+    public int getcodigo_marca() {
+        return codigo_marca;
     }
 
-    public void setdeparid(int codigodepa) {
-        this.deparid = codigodepa;
+    public void setcodigo_marca(int codigodepa) {
+        this.codigo_marca = codigodepa;
     }
 
-    public String getdeparnombre() {
-        return deparnombre;
+    public String getnombre_marca() {
+        return nombre_marca;
     }
 
-    public void setdeparnombre(String snombre) {
-        this.deparnombre = snombre;
+    public void setnombre_marca(String snombre) {
+        this.nombre_marca = snombre;
     }
 
-    public String getdeparestado() {
-        return deparestado;
+    public String getestatus_marca() {
+        return estatus_marca;
     }
 
-    public void setdeparestado(String sestado) {
-        this.deparestado = sestado;
+    public void setestatus_marca(String sestado) {
+        this.estatus_marca = sestado;
     }
     @Override
     public String toString() {
-        return "tbl_departamento{" + "codigo_departamento=" + deparid + ", nombre_departamento="  +  deparnombre +", estatus=" + deparestado+  "}";
+        return "marca{" + "codigo_marca=" + codigo_marca + ", nombre_marca="  +  nombre_marca +", estatus_marca=" + estatus_marca+  "}";
     }
     
     

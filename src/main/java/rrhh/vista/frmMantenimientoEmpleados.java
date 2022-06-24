@@ -57,7 +57,7 @@ cbox_estado.addItem("inactivo");
         List<clsmarca> departamentos = departamentoDAO.select();
         cbox_departamentos.addItem("Seleccione un departamento");
         for (int i = 0; i < departamentos.size(); i++) {
-            cbox_departamentos.addItem(departamentos.get(i).getdeparnombre());
+            cbox_departamentos.addItem(departamentos.get(i).getnombre_marca());
         }
     }
     
@@ -66,7 +66,7 @@ cbox_estado.addItem("inactivo");
         List<clsmarca> departamentos = departamentoDAO.select();
         cbox_departamentos.removeItem("Seleccione un departamento");
         for (int i = 0; i < departamentos.size(); i++) {
-            cbox_departamentos.removeItem(departamentos.get(i).getdeparnombre());
+            cbox_departamentos.removeItem(departamentos.get(i).getnombre_marca());
         }
     }
     

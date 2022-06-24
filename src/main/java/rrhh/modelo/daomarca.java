@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class daomarca {
 
-    private static final String SQL_SELECT = "SELECT deparid, deparnombre, deparestado FROM tbl_departamentos";
-    private static final String SQL_INSERT = "INSERT INTO tbl_departamentos(deparnombre, deparestado) VALUES(?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_departamentos SET deparnombre=?, deparestado=? WHERE deparid= ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_departamentos WHERE deparid=?";
-    private static final String SQL_QUERY = "SELECT  deparid,  deparnombre, deparestado FROM tbl_departamentos WHERE deparid= ?";
+    private static final String SQL_SELECT = "SELECT codigo_marca, nombre_marca, estatus_marca FROM marca";
+    private static final String SQL_INSERT = "INSERT INTO marca(nombre_marca, estatus_marca) VALUES(?, ?)";
+    private static final String SQL_UPDATE = "UPDATE marca SET nombre_marca?, estatus_marca=? WHERE codigo_marca= ?";
+    private static final String SQL_DELETE = "DELETE FROM marca WHERE codigo_marca=?";
+    private static final String SQL_QUERY = "SELECT  codigo_marca,  nombre_marca, estatus_marca FROM marca WHERE codigo_marca= ?";
 
     public List<clsmarca> select() {
         Connection conn = null;
@@ -33,14 +33,14 @@ public class daomarca {
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int codigo = rs.getInt("deparid");
-                String nombre = rs.getString("deparnombre");
-                String estatus = rs.getString("deparestado");
+                int codigo = rs.getInt("codigo_marca");
+                String nombre = rs.getString("nombre_marca");
+                String estatus = rs.getString("estatus_marca");
 
                 usuario = new clsmarca();
-                usuario.setdeparid(codigo);
-                usuario.setdeparnombre(nombre);
-                usuario.setdeparestado(estatus);
+                usuario.setcodigo_marca(codigo);
+                usuario.setnombre_marca(nombre);
+                usuario.setestatus_marca(estatus);
 
                 usuarios.add(usuario);
             }
@@ -63,8 +63,8 @@ public class daomarca {
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, perfil.getdeparnombre());
-            stmt.setString(2, perfil.getdeparestado());
+            stmt.setString(1, perfil.getnombre_marca());
+            stmt.setString(2, perfil.getestatus_marca());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -88,9 +88,9 @@ public class daomarca {
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
              
-             stmt.setString(1, perfil.getdeparnombre());
-            stmt.setString(2, perfil.getdeparestado());
-            stmt.setInt(3, perfil.getdeparid());
+             stmt.setString(1, perfil.getnombre_marca());
+            stmt.setString(2, perfil.getestatus_marca());
+            stmt.setInt(3, perfil.getcodigo_marca());
             
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
@@ -114,7 +114,7 @@ public class daomarca {
             conn = clsConexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, perfil.getdeparid());
+            stmt.setInt(1, perfil.getcodigo_marca());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -135,17 +135,17 @@ public class daomarca {
             conn = clsConexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_QUERY);
             stmt = conn.prepareStatement(SQL_QUERY);
-           stmt.setInt(1, perfil.getdeparid());
+           stmt.setInt(1, perfil.getcodigo_marca());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int codigo = rs.getInt("deparid");
-                String nombre = rs.getString("deparnombre");
-                String estatus = rs.getString("deparestado");
+                int codigo = rs.getInt("codigo_marca");
+                String nombre = rs.getString("nombre_marca");
+                String estatus = rs.getString("estatus_marca");
 
                 perfil = new clsmarca();
-                perfil.setdeparid(codigo);
-                perfil.setdeparnombre(nombre);
-                perfil.setdeparestado(estatus);
+                perfil.setcodigo_marca(codigo);
+                perfil.setnombre_marca(nombre);
+                perfil.setestatus_marca(estatus);
                 
             }
             //System.out.println("Registros buscado:" + persona);
