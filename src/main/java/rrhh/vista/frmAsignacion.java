@@ -5,8 +5,8 @@
  */
 package rrhh.vista;
 
-import rrhh.modelo.daoEmpleados;
-import rrhh.controlador.clsEmpleados;
+import rrhh.modelo.daocliente;
+import rrhh.controlador.clscliente;
 import rrhh.modelo.daoConcepto;
 import rrhh.controlador.clsConcepto;
 
@@ -28,11 +28,11 @@ import javax.swing.JOptionPane;
 public class frmAsignacion extends javax.swing.JInternalFrame {
 
     public void llenadoDeCombos() {
-        daoEmpleados empleadoDAO = new daoEmpleados();
-        List<clsEmpleados> empleados = empleadoDAO.select();
+        daocliente empleadoDAO = new daocliente();
+        List<clscliente> empleados = empleadoDAO.select();
         empleadoss.addItem("Seleccione una opción");
         for (int i = 0; i < empleados.size(); i++) {
-            empleadoss.addItem(empleados.get(i).getempnombre());
+            empleadoss.addItem(empleados.get(i).getnombre_cliente());
         }
     }
     
@@ -101,15 +101,15 @@ public class frmAsignacion extends javax.swing.JInternalFrame {
         salario.setText(""); 
         
         
-        clsEmpleados empleadoAConsultar2 = new clsEmpleados();
-        daoEmpleados empleadoDAO = new daoEmpleados();
+        clscliente empleadoAConsultar2 = new clscliente();
+        daocliente empleadoDAO = new daocliente();
         
-        empleadoAConsultar2.setempnombre(empleadoss.getSelectedItem().toString());
+        empleadoAConsultar2.setnombre_cliente(empleadoss.getSelectedItem().toString());
         empleadoAConsultar2 = empleadoDAO.query2(empleadoAConsultar2);
     
-        salario.setText(empleadoAConsultar2.getempsueldo());     
-        salario1.setText(empleadoAConsultar2.getempsueldo());     
-        nhoras=Double.parseDouble(empleadoAConsultar2.getempdias());
+        salario.setText(empleadoAConsultar2.getdireccion_cliente());     
+        salario1.setText(empleadoAConsultar2.getdireccion_cliente());     
+        nhoras=Double.parseDouble(empleadoAConsultar2.getnit_cliente());
          
         }
 
@@ -222,8 +222,8 @@ tiposAsignacion.addItem("muchos");
      int contador=1, contador2=1;
     consultar = JOptionPane.showInputDialog("registro" + "Numero de empleados" + c+".");
     int a = Integer.parseInt(consultar);
-     clsEmpleados empleadoAConsultar = new clsEmpleados();
-     daoEmpleados empleadoDAO = new daoEmpleados();
+     clscliente empleadoAConsultar = new clscliente();
+     daocliente empleadoDAO = new daocliente();
         
      clsAsignacion busquedaAConsultar = new clsAsignacion();
      daoAsignacion busquedaDAO = new daoAsignacion();
@@ -233,19 +233,19 @@ tiposAsignacion.addItem("muchos");
        
     while(contador <= a){
     
-    empleadoAConsultar.setempid(contador);
+    empleadoAConsultar.setCodigo_cliente(contador);
     empleadoAConsultar = empleadoDAO.query(empleadoAConsultar); 
 
      
-     empleadoAConsultar.getempnombre();
-     empleadoAConsultar.getempsueldo();
-     empleadoAConsultar.getempdias();
+     empleadoAConsultar.getnombre_cliente();
+     empleadoAConsultar.getdireccion_cliente();
+     empleadoAConsultar.getnit_cliente();
 
    String conceptos = conceptosAgregados.getText();
    String valorConcepto = VConceptos.getText();
 
-    Double numero1= Double.parseDouble(empleadoAConsultar.getempsueldo());
-    Double numeroH= Double.parseDouble(empleadoAConsultar.getempdias());
+    Double numero1= Double.parseDouble(empleadoAConsultar.getdireccion_cliente());
+    Double numeroH= Double.parseDouble(empleadoAConsultar.getnit_cliente());
     Double numero2= Double.parseDouble(VV.getText());
     double porcentajeIgss = (vigss * numero1)/100;  
     double porcentajeIsr = (visr * numero1)/100; 
@@ -254,7 +254,7 @@ tiposAsignacion.addItem("muchos");
     
  if(calculos == 1){
          
-     datosAInsertar.setanombre(empleadoAConsultar.getempnombre());
+     datosAInsertar.setanombre(empleadoAConsultar.getnombre_cliente());
      datosAInsertar.setaconcepto(conceptos);
      datosAInsertar.setavigss(String.valueOf(porcentajeIgss));
      datosAInsertar.setavisr(String.valueOf(porcentajeIsr));
@@ -267,7 +267,7 @@ tiposAsignacion.addItem("muchos");
    }
  if(calculos == 2){
    
-     datosAInsertar.setanombre(empleadoAConsultar.getempnombre());
+     datosAInsertar.setanombre(empleadoAConsultar.getnombre_cliente());
      datosAInsertar.setaconcepto(conceptos);
      datosAInsertar.setavigss(String.valueOf(porcentajeIgss));
      datosAInsertar.setavisr(String.valueOf(porcentajeIsr));

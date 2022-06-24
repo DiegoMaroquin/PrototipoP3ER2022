@@ -7,8 +7,8 @@ package rrhh.vista;
 
 
 import java.awt.Desktop;
-import rrhh.modelo.daoEmpleados;
-import rrhh.controlador.clsEmpleados;
+import rrhh.modelo.daocliente;
+import rrhh.controlador.clscliente;
 import rrhh.modelo.daolineas;
 import rrhh.controlador.clslineas;
 import rrhh.modelo.daomarca;
@@ -30,91 +30,51 @@ cbox_estado.addItem("seleccione:");
 cbox_estado.addItem("activo");
 cbox_estado.addItem("inactivo");
 }
-    
  
-
-
-    public void llenadoDeCombosCar() {
-        daolineas cargoDAO = new daolineas();
-        List<clslineas> cargos = cargoDAO.select();
-        cbox_cargos.addItem("Seleccione un cargo");
-        for (int i = 0; i < cargos.size(); i++) {
-            cbox_cargos.addItem(cargos.get(i).getnombre_linea());
-        }
-    }
-    
-   public void actualizacionCar() {
-        daolineas cargoDAO = new daolineas();
-        List<clslineas> cargos = cargoDAO.select();
-        cbox_cargos.removeItem("Seleccione un cargo");
-        for (int i = 0; i < cargos.size(); i++) {
-            cbox_cargos.removeItem(cargos.get(i).getnombre_linea());
-        }
-    }
-
-    public void llenadoDeCombosDepar() {
-        daomarca departamentoDAO = new daomarca();
-        List<clsmarca> departamentos = departamentoDAO.select();
-        cbox_departamentos.addItem("Seleccione un departamento");
-        for (int i = 0; i < departamentos.size(); i++) {
-            cbox_departamentos.addItem(departamentos.get(i).getnombre_marca());
-        }
-    }
-    
-    public void actualizacionDepar() {
-        daomarca departamentoDAO = new daomarca();
-        List<clsmarca> departamentos = departamentoDAO.select();
-        cbox_departamentos.removeItem("Seleccione un departamento");
-        for (int i = 0; i < departamentos.size(); i++) {
-            cbox_departamentos.removeItem(departamentos.get(i).getnombre_marca());
-        }
-    }
     
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Id empleado");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Salario");
+        modelo.addColumn("codigo_cliente");
+        modelo.addColumn("nombre_cliente");
+        modelo.addColumn("direccion_cliente");
         modelo.addColumn("Estado");
-        modelo.addColumn("Horas extras");
-        modelo.addColumn("Cargo");
-        modelo.addColumn("Departamento");
-        daoEmpleados empleadoDAO = new daoEmpleados();
-        List<clsEmpleados> empleados = empleadoDAO.select();
+        modelo.addColumn("nit");
+        modelo.addColumn("telefono");
+        modelo.addColumn("codigo_vendedor");
+        daocliente empleadoDAO = new daocliente();
+        List<clscliente> empleados = empleadoDAO.select();
         tablaEmpleados.setModel(modelo);
         String[] dato = new String[8];
         for (int i = 0; i < empleados.size(); i++) {
-            dato[0] = Integer.toString(empleados.get(i).getempid());
-            dato[1] = empleados.get(i).getempnombre();
-            dato[2] = empleados.get(i).getempsueldo();
-            dato[3] = empleados.get(i).getempestado();
-            dato[4] = empleados.get(i).getempdias();
-            dato[5] = empleados.get(i).getempcargo();
-            dato[6] = empleados.get(i).getempdepart();
+            dato[0] = Integer.toString(empleados.get(i).getCodigo_cliente());
+            dato[1] = empleados.get(i).getnombre_cliente();
+            dato[2] = empleados.get(i).getdireccion_cliente();
+            dato[3] = empleados.get(i).getestatus_cliente();
+            dato[4] = empleados.get(i).getnit_cliente();
+            dato[5] = empleados.get(i).gettelefono_cliente();
+            dato[6] = empleados.get(i).getcodigo_vendedor();
             //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
         }
     }
 
     public void buscarEmpleados() {
-        clsEmpleados empleadoAConsultar = new clsEmpleados();
-        daoEmpleados empleadoDAO = new daoEmpleados();
-        empleadoAConsultar.setempid(Integer.parseInt(txtbuscado.getText()));
+        clscliente empleadoAConsultar = new clscliente();
+        daocliente empleadoDAO = new daocliente();
+        empleadoAConsultar.setCodigo_cliente(Integer.parseInt(txtbuscado.getText()));
         empleadoAConsultar = empleadoDAO.query(empleadoAConsultar);
-        txtNombre.setText(empleadoAConsultar.getempnombre());
-        txtSalario.setText(empleadoAConsultar.getempsueldo());
-        cbox_estado.setSelectedItem(empleadoAConsultar.getempestado());
-        txtHoras.setText(empleadoAConsultar.getempdias());
-        cbox_cargos.setSelectedItem(empleadoAConsultar.getempcargo());
-        cbox_departamentos.setSelectedItem(empleadoAConsultar.getempdepart());
+        txtNombre.setText(empleadoAConsultar.getnombre_cliente());
+        txtSalario.setText(empleadoAConsultar.getdireccion_cliente());
+        cbox_estado.setSelectedItem(empleadoAConsultar.getestatus_cliente());
+        txtHoras.setText(empleadoAConsultar.getnit_cliente());
+        txttelefono.setText(empleadoAConsultar.gettelefono_cliente());
+        txtcodigo.setText(empleadoAConsultar.getcodigo_vendedor());
       
     }
 
     public frmMantenimientoEmpleados() {
         initComponents();
-        llenadoDeTablas();
-        llenadoDeCombosCar();
-        llenadoDeCombosDepar();
+        llenadoDeTablas(); 
         estado();
    
         
@@ -139,10 +99,9 @@ cbox_estado.addItem("inactivo");
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaEmpleados = new javax.swing.JTable();
-        cbox_cargos = new javax.swing.JComboBox<>();
         label4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        txtSalario = new javax.swing.JTextField();
+        txtcodigo = new javax.swing.JTextField();
         label8 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtHoras = new javax.swing.JTextField();
@@ -153,12 +112,14 @@ cbox_estado.addItem("inactivo");
         label13 = new javax.swing.JLabel();
         label14 = new javax.swing.JLabel();
         label5 = new javax.swing.JLabel();
-        cbox_departamentos = new javax.swing.JComboBox<>();
         label7 = new javax.swing.JLabel();
         label10 = new javax.swing.JLabel();
         txtbuscado = new javax.swing.JTextField();
         btnBuscar1 = new javax.swing.JButton();
         cbox_estado = new javax.swing.JComboBox<>();
+        txtSalario = new javax.swing.JTextField();
+        txtSalario2 = new javax.swing.JTextField();
+        txttelefono = new javax.swing.JTextField();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -221,7 +182,7 @@ cbox_estado.addItem("inactivo");
 
             },
             new String [] {
-                "Id empleado", "Nombre", "Salario", "Estado", "Horas Extras", "Cargo", "Departamento"
+                "Codigo_cliente", "nombre_cliente", "direcion_cliente", "Estado", "nit", "telefono", "codigo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -239,14 +200,6 @@ cbox_estado.addItem("inactivo");
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 680, 330));
 
-        cbox_cargos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbox_cargos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbox_cargosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cbox_cargos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 150, -1));
-
         label4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         label4.setText("-----------------Asignacion de cargo y departamento-----------------");
         getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 360, -1));
@@ -259,10 +212,10 @@ cbox_estado.addItem("inactivo");
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 100, -1));
 
-        txtSalario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtSalario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        txtSalario.setOpaque(false);
-        getContentPane().add(txtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 260, -1));
+        txtcodigo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtcodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtcodigo.setOpaque(false);
+        getContentPane().add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 220, 10));
 
         label8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 450, -1, -1));
@@ -283,18 +236,18 @@ cbox_estado.addItem("inactivo");
         getContentPane().add(txtHoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 260, -1));
 
         label9.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label9.setText("Salario empleado");
+        label9.setText("direccion");
         getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         label11.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         getContentPane().add(label11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
         label12.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label12.setText("Horas Extras");
+        label12.setText("nit");
         getContentPane().add(label12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label6.setText("Cargos disponibles");
+        label6.setText("telefono");
         getContentPane().add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         label13.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -302,27 +255,19 @@ cbox_estado.addItem("inactivo");
         getContentPane().add(label13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 450, 20, -1));
 
         label14.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label14.setText("Empleado estado");
+        label14.setText(" estado cliente");
         getContentPane().add(label14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         label5.setText("-----------------Ingreso de datos del empleado-----------------");
         getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 360, -1));
 
-        cbox_departamentos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbox_departamentos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbox_departamentosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cbox_departamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 150, -1));
-
         label7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label7.setText("Departamentos disponibles");
+        label7.setText("codigo vendedor");
         getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
         label10.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label10.setText("Nombre empleado");
+        label10.setText("Nombre cliente");
         getContentPane().add(label10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
         getContentPane().add(txtbuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 102, -1));
 
@@ -342,6 +287,21 @@ cbox_estado.addItem("inactivo");
         });
         getContentPane().add(cbox_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 260, 20));
 
+        txtSalario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtSalario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtSalario.setOpaque(false);
+        getContentPane().add(txtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 260, -1));
+
+        txtSalario2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtSalario2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtSalario2.setOpaque(false);
+        getContentPane().add(txtSalario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 260, -1));
+
+        txttelefono.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txttelefono.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txttelefono.setOpaque(false);
+        getContentPane().add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 260, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -349,9 +309,9 @@ cbox_estado.addItem("inactivo");
         // TODO add your handling code here:
         int i =JOptionPane.showConfirmDialog(this, "seguro que quieres borrar este dato ");
         if ( i == 0){
-        daoEmpleados empleadoDAO = new daoEmpleados();
-        clsEmpleados empleadoAEliminar = new clsEmpleados();
-        empleadoAEliminar.setempid(Integer.parseInt(txtbuscado.getText()));
+        daocliente empleadoDAO = new daocliente();
+        clscliente empleadoAEliminar = new clscliente();
+        empleadoAEliminar.setCodigo_cliente(Integer.parseInt(txtbuscado.getText()));
         empleadoDAO.delete(empleadoAEliminar);
         
          } else if(1==1){
@@ -363,14 +323,14 @@ cbox_estado.addItem("inactivo");
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
        
      
-        daoEmpleados empleadoDAO = new daoEmpleados();
-        clsEmpleados empleadoAInsertar = new clsEmpleados();
-        empleadoAInsertar.setempnombre(txtNombre.getText());
-        empleadoAInsertar.setempsueldo(txtSalario.getText());
-        empleadoAInsertar.setempestado(cbox_estado.getSelectedItem().toString());
-        empleadoAInsertar.setempdias(txtHoras.getText());
-        empleadoAInsertar.setempcargo(cbox_cargos.getSelectedItem().toString());
-        empleadoAInsertar.setempdepart(cbox_departamentos.getSelectedItem().toString());
+        daocliente empleadoDAO = new daocliente();
+        clscliente empleadoAInsertar = new clscliente();
+        empleadoAInsertar.setnombre_cliente(txtNombre.getText());
+        empleadoAInsertar.setdireccion_cliente(txtSalario.getText());
+        empleadoAInsertar.setestatus_cliente(cbox_estado.getSelectedItem().toString());
+        empleadoAInsertar.setnit_cliente(txtHoras.getText());
+        empleadoAInsertar.settelefono_cliente(txttelefono.getText());
+        empleadoAInsertar.setcodigo_vendedor(txtcodigo.getText());
         empleadoDAO.insert(empleadoAInsertar);
         llenadoDeTablas();
     
@@ -387,15 +347,15 @@ cbox_estado.addItem("inactivo");
 //        // TODO add your handling code here:
 int i =JOptionPane.showConfirmDialog(this, "seguro que quieres modificar este dato ");
         if ( i == 0){
-        daoEmpleados empleadoDAO = new daoEmpleados();
-        clsEmpleados empleadoAActualizar = new clsEmpleados();
-        empleadoAActualizar.setempid(Integer.parseInt(txtbuscado.getText()));
-        empleadoAActualizar.setempnombre(txtNombre.getText());
-        empleadoAActualizar.setempsueldo(txtSalario.getText());
-        empleadoAActualizar.setempestado(cbox_estado.getSelectedItem().toString());
-        empleadoAActualizar.setempdias(txtHoras.getText());  
-        empleadoAActualizar.setempcargo(cbox_cargos.getSelectedItem().toString());
-        empleadoAActualizar.setempdepart(cbox_departamentos.getSelectedItem().toString());
+        daocliente empleadoDAO = new daocliente();
+        clscliente empleadoAActualizar = new clscliente();
+        empleadoAActualizar.setCodigo_cliente(Integer.parseInt(txtbuscado.getText()));
+        empleadoAActualizar.setnombre_cliente(txtNombre.getText());
+        empleadoAActualizar.setdireccion_cliente(txtSalario.getText());
+        empleadoAActualizar.setestatus_cliente(cbox_estado.getSelectedItem().toString());
+        empleadoAActualizar.setnit_cliente(txtHoras.getText());  
+        empleadoAActualizar.settelefono_cliente(txttelefono.getText());
+        empleadoAActualizar.setcodigo_vendedor(txtcodigo.getText());
         empleadoDAO.update(empleadoAActualizar);
         }   else if(1==1){
          JOptionPane.showMessageDialog(this, "no se a modificado los datos ");
@@ -404,9 +364,9 @@ int i =JOptionPane.showConfirmDialog(this, "seguro que quieres modificar este da
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        cbox_cargos.setSelectedIndex(0);
+        txtcodigo.setText("");
         cbox_estado.setSelectedIndex(0);
-        cbox_departamentos.setSelectedIndex(0);
+       txttelefono.setText("");
         txtNombre.setText("");
         txtSalario.setText("");
         txtHoras.setText("");
@@ -416,11 +376,6 @@ int i =JOptionPane.showConfirmDialog(this, "seguro que quieres modificar este da
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void cbox_cargosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_cargosActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbox_cargosActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -438,16 +393,9 @@ JOptionPane.showMessageDialog(null, "No se puede abrir el archivo de ayuda, prob
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHorasActionPerformed
 
-    private void cbox_departamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_departamentosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbox_departamentosActionPerformed
-
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         // TODO add your handling code here:
-        actualizacionCar();
-        actualizacionDepar();
-        llenadoDeCombosCar();
-        llenadoDeCombosDepar();
+       
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void cbox_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_estadoActionPerformed
@@ -462,8 +410,6 @@ JOptionPane.showMessageDialog(null, "No se puede abrir el archivo de ayuda, prob
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> cbox_cargos;
-    private javax.swing.JComboBox<String> cbox_departamentos;
     private javax.swing.JComboBox<String> cbox_estado;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -485,6 +431,9 @@ JOptionPane.showMessageDialog(null, "No se puede abrir el archivo de ayuda, prob
     private javax.swing.JTextField txtHoras;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtSalario;
+    private javax.swing.JTextField txtSalario2;
     private javax.swing.JTextField txtbuscado;
+    private javax.swing.JTextField txtcodigo;
+    private javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables
 }
